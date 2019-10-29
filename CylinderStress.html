@@ -1,0 +1,565 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Stress in Thick Walled Cylinder or Sphere</title>
+<style type="text/css">
+.auto-style2 {
+ font-family: Arial, Helvetica, sans-serif;
+}
+.auto-style3 {
+ color: #FFFFFF;
+ text-align: center;
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: medium;
+}
+/*Sphere must be 250px or form will collide with drawing*/
+.sphereDraw {
+  display: block;
+  background: black;
+  margin: 0;
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  background: radial-gradient(circle at 100px 100px, #5cabff, #000);
+}
+    
+.sphereDraw .shadow {
+position: absolute;
+width: 100%;
+height: 100%;
+background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);
+-webkit-transform: rotateX(90deg) translateZ(-150px);
+-moz-transform: rotateX(90deg) translateZ(-150px);
+-ms-transform: rotateX(90deg) translateZ(-150px);
+-o-transform: rotateX(90deg) translateZ(-150px);
+transform: rotateX(90deg) translateZ(-150px);
+z-index: -1;
+}
+
+.cylDraw {
+   position: absolute;
+     margin:50px;
+}
+.cylDraw .middle{
+    width:120px;
+    height:180px;
+    background:radial-gradient(circle at 100px 100px, #5cabff, #000);
+    position:absolute;
+}
+
+.cylDraw .top{
+    width: 120px;
+	height: 50px;
+	background:radial-gradient(circle at 100px 100px, #5cabff, #000);
+	-moz-border-radius: 60px / 25px;
+	-webkit-border-radius: 60px / 25px;
+	border-radius: 60px / 25px;
+    position:absolute;
+    top:-25px;
+}
+
+.cylDraw .bottom{
+    width: 120px;
+	height: 50px;
+	background:radial-gradient(circle at 100px 100px, #5cabff, #000);
+	-moz-border-radius: 60px / 25px;
+	-webkit-border-radius: 60px / 25px;
+	border-radius: 60px / 25px;
+    position:absolute;
+    top:155px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.75)
+}
+ 
+ 
+.stage {
+  width: 300px;
+  height: 300px;
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  -ms-perspective: 1200px;
+  -o-perspective: 1200px;
+  perspective: 1200px;
+  -webkit-perspective-origin: 50% 50%;
+  -moz-perspective-origin: 50% 50%;
+  -ms-perspective-origin: 50% 50%;
+  -o-perspective-origin: 50% 50%;
+  perspective-origin: 50% 50%;
+}
+       
+body {
+  width: 300px;
+  margin: 20px auto;
+  background: linear-gradient(to bottom, rgba(100, 100, 100, 0.2) 0%, rgba(255, 255, 255, 0.5) 40%, #ffffff 100%);
+  background-repeat: no-repeat;
+}
+
+</style>
+</head>
+<body>
+
+    
+    
+<div id="formInformation">   
+<form id=formCyl>
+<table style="width: 100%">
+ <tr>
+  <td>
+  <table style="width: 100%">
+   <tr>
+    <td>
+    <table style="width: 100%">
+     <tr>
+      <td style="background-color:blue;" class="auto-style3"> Stresses in a Thick Walled Cylinder/Sphere</td>
+     </tr>
+     <tr>
+      <td>&nbsp;</td>
+     </tr>
+    
+  <!--   
+        <tr id="cylinfo">
+         <td class="auto-style2">A cylinder with closed ends will have an axial stress in the walls.</td>
+     </tr>
+-->
+
+    </table>
+    </td>
+   </tr>
+
+<table id="cylT">  
+    <tr>
+      <td>
+            <figure class="cylDraw">
+    <section class="bottom"></section>
+    <section class="middle"></section>
+    <section class="top"></section>  
+            </figure>
+        </td>
+    </tr>
+</table>    
+      
+<table id="sphereT" style="visibility:hidden"> 
+    <tr>
+        <td>
+        <figure class="sphereDraw" ><span class="shadow"></span>
+        </figure>
+        </td>
+    </tr>
+ </table>       
+
+
+  
+      
+<tr>
+<td>
+
+<table style="width: 100%">
+<tr>
+      <td style="width: 33%" class="auto-style2">Geometry</td>
+      <td id ="geom" style="width: 33%"> 
+             <select onchange=showHide(); id="geo">
+             <option value="0" selected>Cylinder</option>
+             <option value="1">Sphere</option>
+            </select>
+      </td>
+</tr>   
+    <tr>
+      <td style="width: 35%" class="auto-style2">Radius to point in wall</td>
+      <td style="width: 35%"><INPUT value="" maxLength=9 size=16 name=r> </td>
+      <td style="width: 35%"><select id="ropt">
+             <option value="0" selected>mm</option>
+             <option value="1">cm</option>
+             <option value="2">m</option>
+             <option value="3">in</option>
+             <option value="4">feet</option>
+             </select>
+       </td>     
+      </tr>
+     <tr>
+      <td style="width: 33%" class="auto-style2">Inner Radius</td>
+      <td style="width: 33%"><INPUT value="" maxLength=9 size=16 name=innr> </td>
+      <td style="width: 33%"><select id="innro">
+             <option value="0" selected>mm</option>
+             <option value="1">cm</option>
+             <option value="2">m</option>
+             <option value="3">in</option>
+             <option value="4">feet</option>
+             </select>
+       </td>     
+      </tr>
+        <tr>&nbsp;</tr><tr>&nbsp;</tr><tr>&nbsp;</tr><tr>&nbsp;</tr>
+     <tr>
+      <td style="width: 33%" class="auto-style2">Outer Radius</td>
+      <td style="width: 33%"> <INPUT value="" maxLength=9 size=16 name=outr></td>
+      <td style="width: 33%"><select id="outro">
+             <option value="0" selected>mm</option>
+             <option value="1">cm</option>
+             <option value="2">m</option>
+             <option value="3">in</option>
+             <option value="4">feet</option>
+            </select>
+      </td>
+     </tr>
+
+<tr>
+      <td style="width: 33%" class="auto-style2">Internal Pressure</td>
+      <td style="width: 33%"> <INPUT value="" maxLength=9 size=16 name=inp></td>
+      <td style="width: 33%"><select id="innpo">
+             <option value="0" selected> MPa </option>
+             <option value="1"> kPa </option>
+             <option value="2"> Pa </option>
+             <option value="3"> psi </option>
+             <option value="4"> ksi </option>
+             <option value="5"> Msi </option>
+            </select>
+      </td>
+     </tr>
+
+<tr>
+      <td style="width: 33%" class="auto-style2">External Pressure</td>
+      <td style="width: 33%"> <INPUT value="" maxLength=9 size=16 name=outp></td>
+      <td style="width: 33%"><select id="outpo">
+             <option value="0" selected> MPa </option>
+             <option value="1"> kPa </option>
+             <option value="2"> Pa </option>
+             <option value="3"> psi </option>
+             <option value="4"> ksi </option>
+             <option value="5"> Msi </option>
+            </select>
+      </td>
+     </tr>
+ <tr>
+      <td style="width: 33%" class="auto-style2">Output Digits </td>
+      <td style="width: 33%"> <select id="p">
+             <option value="0"> 1 </option>
+             <option value="1"> 2 </option>
+             <option value="2"> 3 </option>
+             <option value="3"> 4 </option>
+             <option value="4"> 5 </option>
+             <option value="5" selected> 6 </option>
+             <option value="6"> 7 </option>
+             <option value="7"> 8 </option>
+             <option value="8"> 9 </option>
+             <option value="9"> 10 </option>
+             <option value="10"> 11 </option>
+             <option value="11"> 12 </option>
+             <option value="12"> 13 </option>
+             <option value="13"> 14 </option>
+             <option value="14"> 15 </option>
+            </select></td>
+     </tr>
+        <tr>&nbsp;</tr>
+        <tr>&nbsp;</tr>
+        <tr>&nbsp;</tr>
+        <tr>&nbsp;</tr>
+<tr>
+      <td style="width: 33%" class="auto-style2">Answer Units</td>
+      <td id ="cylAnswer" style="width: 33%"> <select id="answerUnits">
+             <option value="0" selected> MPa </option>
+             <option value="1"> kPa </option>
+             <option value="2"> Pa </option>
+             <option value="3"> psi </option>
+             <option value="4"> ksi </option>
+             <option value="5"> Msi </option>
+            </select>
+      </td>
+</tr>
+   
+<tr>
+      <td  style="width: 35%">&nbsp;</td>
+      <td id = "cylButton" class="auto-style3" ><INPUT type = "button" value= "Calculate Cylinder Stress" onclick=compute(form); maxLength=7
+    size=16 ></td>
+          
+</tr>
+
+        
+<tr> 
+      <td style="width: 35%">&nbsp;</td>
+      <td id = "sphereButton"  class="auto-style3" style="visibility:hidden"><INPUT type = "button" value= "Calculate Sphere Stress" onclick=computeSphere(form); maxLength=7
+    size=16 ></td>
+          
+</tr>
+
+     <tr id = "axialStress">
+      <td style="width: 33%" class="auto-style2">Axial Stress</td>
+      <td style="width: 33%"><INPUT value= " " maxLength=7 size=16 name=astress></td>
+      <td style="width: 33%">&nbsp;</td>     
+     </tr>
+     <tr>
+      <td style="width: 33%" class="auto-style2">Circumfrence (Hoop) Stress</td>
+      <td style="width: 33%"><INPUT value= " " maxLength=7 size=16 name=cstress></td>
+      <td style="width: 33%">&nbsp;</td>
+     </tr>
+     <tr>
+      <td style="width: 33%" class="auto-style2">Radial Stress</td>
+      <td style="width: 33%"><INPUT value= " " maxLength=7 size=16 name=rstress></td>
+      <td style="width: 33%">&nbsp;</td>
+     </tr>
+    <td style="width: 33%">&nbsp;</td>
+      <tr id = "cylVonMises">
+      <td style="width: 33%" class="auto-style2">Von Mises Stress</td>
+    
+      <td style="width: 33%"><INPUT value= " " maxLength=7 size=16 name=vstress></td>
+      
+     </tr>
+     <tr>
+      <td style="width: 33%">&nbsp;</td>
+      <td style="width: 33%">&nbsp;</td>
+      <td style="width: 33%">&nbsp;</td>
+     </tr>
+    
+    </table>
+    </td>
+   </tr>
+  </table>
+  </td>
+ </tr>
+</table>
+
+</form>
+    </div>
+    
+</body>
+
+
+
+<SCRIPT language=javascript type=text/javascript>  
+//assumes default will always be cylinder
+
+    
+//document.getElementById('geo').selectedIndex = 0;
+    
+var shape = "cylinder"
+var cylH = document.getElementById('geo');
+cylH.selectedIndex = 0;
+
+function showHide() {
+
+    if (shape == "cylinder") {
+    shape = "sphere";
+    document.getElementById("cylButton").style.visibility="collapse";
+    document.getElementById("cylVonMises").style.visibility="collapse";
+    document.getElementById("sphereButton").style.visibility="visible";
+    document.getElementById("axialStress").style.visibility="collapse";
+    //drawing
+    document.getElementById("sphereT").style.visibility="visible";
+    document.getElementById("cylT").style.visibility="hidden";
+    }
+    else if (shape=="sphere")
+        {   
+            shape = "cylinder";
+            document.getElementById("sphereButton").style.visibility="collapse";
+            document.getElementById("cylButton").style.visibility="visible";
+            document.getElementById("cylVonMises").style.visibility="visible";
+            document.getElementById("axialStress").style.visibility="visible";
+            //drawing
+            document.getElementById("sphereT").style.visibility="hidden";
+            document.getElementById("cylT").style.visibility="visible";
+        }
+    else
+        {
+        //nothing    
+        }
+}        
+    
+function compute(f) {
+ 
+//var currentTime = new Date();
+ 
+var or = parseFloat(f.outr.value);
+var ir = parseFloat(f.innr.value);
+var op = parseFloat(f.outp.value);
+var ip = parseFloat(f.inp.value);
+var radius = parseFloat(f.r.value);
+    
+var p1 = parseFloat(f.p.selectedIndex) + 1.;
+    
+var convLength = [0.001, 0.01, 1, 0.0254, (12*0.0254)];
+var convPressure = [1000000, 1000, 1, 1/0.000145037738007, 1000*(1/0.000145037738007), 1000000*(1/0.000145037738007) ];
+var convAnswer = [1/1000000, 1/1000, 1, 0.000145037738007, 0.000000145037738007, 0.000000000145037738007 ];
+    
+ 
+var cr = convLength[parseFloat(f.ropt.selectedIndex) ] ;
+var cir = convLength[parseFloat(f.innro.selectedIndex)];
+var cor = convLength[parseFloat(f.outro.selectedIndex)];
+console.log(cor);
+var cip = convPressure[parseFloat(f.innpo.selectedIndex)];
+var cop = convPressure[parseFloat(f.outpo.selectedIndex)];
+var cuanswer = convAnswer[parseFloat(f.answerUnits.selectedIndex)];
+
+//converts values to meter and Pa before doing calculations
+//convAnswer converts from meter, Pa to desired pressure units after calculations
+    
+console.log(or);
+console.log(ir);
+console.log(op);
+console.log(ip);
+console.log(radius);
+    
+var or = cor*or;
+var ir = cir*ir;
+var op = cop*op;
+var ip = cip*ip;
+var radius = cr*radius;
+
+console.log(or);
+console.log(ir);
+console.log(op);
+console.log(ip);
+console.log(radius);  
+ 
+if(ir > or) 
+    {
+     alert("Error - Inner radius cannot be larger than outer radius"); 
+     return "Error"
+    } 
+    
+if(or <=0 || ir <=0) 
+    {
+     alert("Error - Radius must be a positive value"); 
+     return "Error"
+    }   
+if(radius > or || radius < ir)
+    {
+     alert("Error - Radius entered is not between inner and outer radius")
+     return "Error"
+    }
+    
+/*
+//comment out after testing
+f.r.value = radius.toPrecision(p1);      
+f.outr.value= or.toPrecision(p1);
+f.innr.value= ir.toPrecision(p1);
+f.outp.value = op.toPrecision(p1);
+f.inp.value = ip.toPrecision(p1);
+//
+*/                
+
+var astress, cstress, rstress, vonmises;
+    
+f.astress.value= astress = (cuanswer*((ip*Math.pow(ir,2) - op*Math.pow(or,2) )/(Math.pow(or,2) - Math.pow(ir,2))  )          ).toPrecision(p1) ;    
+
+f.cstress.value = cstress = (cuanswer*(((ip*Math.pow(ir,2) - op*Math.pow(or,2) ) / (Math.pow(or,2) - Math.pow(ir,2))) - ((Math.pow(ir,2)*Math.pow(or,2) * (op - ip) ) / (Math.pow(radius,2) * (Math.pow(or,2) - Math.pow(ir,2))))  )     ).toPrecision(p1);
+
+f.rstress.value = rstress = (cuanswer*(((ip*Math.pow(ir,2) - op*Math.pow(or,2) ) / (Math.pow(or,2) - Math.pow(ir,2))) + ((Math.pow(ir,2)*Math.pow(or,2) * (op - ip) ) / (Math.pow(radius,2) * (Math.pow(or,2) - Math.pow(ir,2))))   )   ).toPrecision(p1); 
+    
+ if( isNaN(astress) || isNaN(cstress)  || isNaN(rstress) )  {
+//check
+     
+        f.astress.value = "Error";
+        f.cstress.value = "Error";
+        f.rstress.value = "Error";
+        f.vstress.value = "Error";
+        return Error;
+ } 
+
+
+var cylstress = [astress, cstress, rstress];
+var pcs = cylstress.sort(); //principal Cyl. stresses
+console.log(pcs);
+    
+f.vstress.value = vonmises = (  Math.sqrt((Math.pow((pcs[0] - pcs[1]),2) + Math.pow((pcs[1]-pcs[2]),2) + Math.pow((pcs[2]-pcs[0]),2))/2)  ).toPrecision(p1);
+} 
+    
+function computeSphere(f) {
+ 
+//var currentTime = new Date();
+ 
+var or = parseFloat(f.outr.value);
+var ir = parseFloat(f.innr.value);
+var op = parseFloat(f.outp.value);
+var ip = parseFloat(f.inp.value);
+var radius = parseFloat(f.r.value);
+var p1 = parseFloat(f.p.selectedIndex) + 1.;
+    
+var convLength = [0.001, 0.01, 1, 0.0254, (12*0.0254)];
+var convPressure = [1000000, 1000, 1, 1/0.000145037738007, 1000*(1/0.000145037738007), 1000000*(1/0.000145037738007) ];
+var convAnswer = [1/1000000, 1/1000, 1, 0.000145037738007, 0.000000145037738007, 0.000000000145037738007 ];
+    
+ 
+var cr = convLength[parseFloat(f.ropt.selectedIndex) ] ;
+var cir = convLength[parseFloat(f.innro.selectedIndex)];
+var cor = convLength[parseFloat(f.outro.selectedIndex)];
+console.log(cor);
+var cip = convPressure[parseFloat(f.innpo.selectedIndex)];
+var cop = convPressure[parseFloat(f.outpo.selectedIndex)];
+var cuanswer = convAnswer[parseFloat(f.answerUnits.selectedIndex)];
+
+//converts values to meter and Pa before doing calculations
+//convAnswer converts from meter, Pa to desired pressure units after calculations
+    
+console.log(or);
+console.log(ir);
+console.log(op);
+console.log(ip);
+console.log(radius);
+    
+var or = cor*or;
+var ir = cir*ir;
+var op = cop*op;
+var ip = cip*ip;
+var radius = cr*radius;
+
+console.log(or);
+console.log(ir);
+console.log(op);
+console.log(ip);
+console.log(radius);  
+    
+ if(ir > or) 
+    {
+     alert("Error - Inner radius cannot be larger than outer radius"); 
+     return "Error"
+    }   
+    
+if(or <=0 || ir <=0) 
+    {
+     alert("Error - Radius must be a positive value"); 
+     return "Error"
+    }   
+    
+if(radius > or || radius < ir)
+    {
+     alert("Error - Radius entered is not between inner and outer radius")
+     return "Error"
+    }
+/*
+//comment out after testing
+f.r.value = radius.toPrecision(p1);      
+f.outr.value= or.toPrecision(p1);
+f.innr.value= ir.toPrecision(p1);
+f.outp.value = op.toPrecision(p1);
+f.inp.value = ip.toPrecision(p1);
+//
+*/                
+
+var astress, cstress, rstress, vonmises;
+    
+f.astress.value= astress = "-----" ;    
+f.rstress.value = rstress = (cuanswer*(  ((op*Math.pow(or,3)) / Math.pow(radius,3)) * ((Math.pow(radius,3)-Math.pow(ir,3))/(Math.pow(ir,3)-Math.pow(or,3)))     + ((ip*Math.pow(ir,3))/(Math.pow(radius,3))) * ((Math.pow(or,3)-Math.pow(radius,3))/(Math.pow(ir,3)-Math.pow(or,3))))     ).toPrecision(p1);
+f.cstress.value = cstress = (cuanswer*(  ((op*Math.pow(or,3)) / (2*Math.pow(radius,3))) * ((2*Math.pow(radius,3)+Math.pow(ir,3))/(Math.pow(ir,3)-Math.pow(or,3)))     - ((ip*Math.pow(ir,3))/(2*Math.pow(radius,3))) * ((2*Math.pow(radius,3)+Math.pow(or,3))/(Math.pow(ir,3)-Math.pow(or,3)))    )         ).toPrecision(p1); 
+    
+ if( isNaN(cstress) || isNaN(rstress) )  {
+//check
+     
+        f.astress.value = "Error";
+        f.cstress.value = "Error";
+        f.rstress.value = "Error";
+        f.vstress.value = "Error";
+        return Error;
+ } 
+
+
+var cylstress = [astress, cstress, rstress];
+var pcs = cylstress.sort(); //principal Cyl. stresses
+console.log(pcs);
+    
+f.vstress.value = vonmises = "-----";
+} 
+ 
+</SCRIPT>
+
+
+</html>
