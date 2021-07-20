@@ -3,22 +3,33 @@
  font-family: Arial, Helvetica, sans-serif;
 }
 .auto-style3 {
- color: #FFFFFF;
+ color: #FEFEFE;
  text-align: center;
  font-family: Arial, Helvetica, sans-serif;
  font-size: medium;
 }
-/*Sphere must be 250px or form will collide with drawing*/
+
+.table-styling {
+  padding-top: 15px;
+}
+
+/*Quick fix: Sphere must be 250px or form will collide with drawing*/
 .sphereDraw {
   display: block;
   background: black;
   margin: 0;
   border-radius: 50%;
-  height: 250px;
-  width: 250px;
+  height: 100px;
+  width: 100px;
+  /*Todo: Nudge sphere to right
+  but padding-left distorts sphere shape
+  padding-left: 35px;
+  Solved, but padding-left added to both
+  .sphereDraw and .sphereDraw .shadow
+  */
   background: radial-gradient(circle at 100px 100px, #5cabff, #000);
+  padding:35px;
 }
-    
 .sphereDraw .shadow {
 position: absolute;
 width: 100%;
@@ -30,11 +41,13 @@ background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0,
 -o-transform: rotateX(90deg) translateZ(-150px);
 transform: rotateX(90deg) translateZ(-150px);
 z-index: -1;
+padding:35px;
 }
 
 .cylDraw {
-   position: absolute;
-     margin:50px;
+    position:relative;
+    margin:50px;
+    padding-left:35px;
 }
 .cylDraw .middle{
     width:120px;
@@ -42,7 +55,6 @@ z-index: -1;
     background:radial-gradient(circle at 100px 100px, #5cabff, #000);
     position:absolute;
 }
-
 .cylDraw .top{
     width: 120px;
 	height: 50px;
@@ -53,7 +65,6 @@ z-index: -1;
     position:absolute;
     top:-25px;
 }
-
 .cylDraw .bottom{
     width: 120px;
 	height: 50px;
@@ -65,8 +76,7 @@ z-index: -1;
     top:155px;
     box-shadow:0px 0px 10px rgba(0,0,0,0.75)
 }
- 
- 
+
 .stage {
   width: 300px;
   height: 300px;
@@ -81,7 +91,7 @@ z-index: -1;
   -o-perspective-origin: 50% 50%;
   perspective-origin: 50% 50%;
 }
-       
+    
 body {
   width: 300px;
   margin: 20px auto;
