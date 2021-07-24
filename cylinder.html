@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Stress in Thick Walled Cylinder or Sphere</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="pressurecalc.js"></script>
+
+
+</head>
+<body>
+
+<div class="container">
+<div id="formInformation">   
+<form id=formCyl>
+<table style="width: 100%">
+<tr>
+  <td>
+  <table style="width: 100%">
+   <tr>
+    <td>
+    <table style="width: 100%">
+     <tr>
+      <h1 style="background-color:blue;" 
+      class="auto-style3"
+      > Stresses in a Thick Walled Cylinder/Sphere
+     </h1>
+     </tr>
+     <tr>
+      <td>&nbsp;</td>
+     </tr>
+    
+  <!--   
+        <tr id="cylinfo">
+         <td class="auto-style2">A cylinder with closed ends will have an axial stress in the walls.</td>
+     </tr>
+-->
+
+    </table>
+    </td>
+   </tr>
+
+<table id="cylT">  
+    <tr>
+      <td>
+            <figure class="cylDraw">
+    <section class="bottom"></section>
+    <section class="middle"></section>
+    <section class="top"></section>  
+            </figure>
+        </td>
+    </tr>
+</table>    
+      
+<table id="sphereT" style="visibility:hidden"> 
+    <tr>
+        <td>
+        <figure class="sphereDraw" ><span class="shadow"></span>
+        </figure>
+        </td>
+    </tr>
+ </table>
+
+
+  
+      
+<tr>
+<td>
+
+<table style="width: 100%" class="table-styling">
+<tr>
+      <td style="width: 33%" class="auto-style2">Geometry</td>
+      <td id ="geom" style="width: 33%"> 
+             <select onchange=showHide(); id="geo">
+             <option value="0" selected>Cylinder</option>
+             <option value="1">Sphere</option>
+            </select>
+      </td>
+</tr>   
+    <tr>
+      <td style="width: 35%" class="auto-style2">Radius to point in wall</td>
+      <td style="width: 35%"><INPUT value="" maxLength=9 size=16 name=r> </td>
+      <td style="width: 35%"><select id="ropt">
+             <option value="0" selected>mm</option>
+             <option value="1">cm</option>
+             <option value="2">m</option>
+             <option value="3">in</option>
+             <option value="4">feet</option>
+             </select>
+       </td>     
+      </tr>
+     <tr>
+      <td style="width: 33%" class="auto-style2">Inner Radius</td>
+      <td style="width: 33%"><INPUT value="" maxLength=9 size=16 name=innr> </td>
+      <td style="width: 33%"><select id="innro">
+             <option value="0" selected>mm</option>
+             <option value="1">cm</option>
+             <option value="2">m</option>
+             <option value="3">in</option>
+             <option value="4">feet</option>
+             </select>
+       </td>     
+      </tr>
+        <tr>&nbsp;</tr><tr>&nbsp;</tr><tr>&nbsp;</tr><tr>&nbsp;</tr>
+     <tr>
+      <td style="width: 33%" class="auto-style2">Outer Radius</td>
+      <td style="width: 33%"> <INPUT value="" maxLength=9 size=16 name=outr></td>
+      <td style="width: 33%"><select id="outro">
+             <option value="0" selected>mm</option>
+             <option value="1">cm</option>
+             <option value="2">m</option>
+             <option value="3">in</option>
+             <option value="4">feet</option>
+            </select>
+      </td>
+     </tr>
+
+<tr>
+      <td style="width: 33%" class="auto-style2">Internal Pressure</td>
+      <td style="width: 33%"> <INPUT value="" maxLength=9 size=16 name=inp></td>
+      <td style="width: 33%"><select id="innpo">
+             <option value="0" selected> MPa </option>
+             <option value="1"> kPa </option>
+             <option value="2"> Pa </option>
+             <option value="3"> psi </option>
+             <option value="4"> ksi </option>
+             <option value="5"> Msi </option>
+            </select>
+      </td>
+     </tr>
+
+<tr>
+      <td style="width: 33%" class="auto-style2">External Pressure</td>
+      <td style="width: 33%"> <INPUT value="" maxLength=9 size=16 name=outp></td>
+      <td style="width: 33%"><select id="outpo">
+             <option value="0" selected> MPa </option>
+             <option value="1"> kPa </option>
+             <option value="2"> Pa </option>
+             <option value="3"> psi </option>
+             <option value="4"> ksi </option>
+             <option value="5"> Msi </option>
+            </select>
+      </td>
+     </tr>
+ <tr>
+      <td style="width: 33%" class="auto-style2">Output Digits </td>
+      <td style="width: 33%"> <select id="p">
+             <option value="0"> 1 </option>
+             <option value="1"> 2 </option>
+             <option value="2"> 3 </option>
+             <option value="3"> 4 </option>
+             <option value="4"> 5 </option>
+             <option value="5" selected> 6 </option>
+             <option value="6"> 7 </option>
+             <option value="7"> 8 </option>
+             <option value="8"> 9 </option>
+             <option value="9"> 10 </option>
+             <option value="10"> 11 </option>
+             <option value="11"> 12 </option>
+             <option value="12"> 13 </option>
+             <option value="13"> 14 </option>
+             <option value="14"> 15 </option>
+            </select></td>
+     </tr>
+        <tr>&nbsp;</tr>
+        <tr>&nbsp;</tr>
+        <tr>&nbsp;</tr>
+        <tr>&nbsp;</tr>
+<tr>
+      <td style="width: 33%" class="auto-style2">Answer Units</td>
+      <td id ="cylAnswer" style="width: 33%"> <select id="answerUnits">
+             <option value="0" selected> MPa </option>
+             <option value="1"> kPa </option>
+             <option value="2"> Pa </option>
+             <option value="3"> psi </option>
+             <option value="4"> ksi </option>
+             <option value="5"> Msi </option>
+            </select>
+      </td>
+</tr>
+   
+<tr>
+      <td  style="width: 35%">&nbsp;</td>
+      <td id = "cylButton" class="auto-style3" ><INPUT type = "button" value= "Calculate Cylinder Stress" onclick=compute(form); maxLength=7
+    size=16 ></td>
+          
+</tr>
+
+        
+<tr> 
+      <td style="width: 35%">&nbsp;</td>
+      <td id = "sphereButton"  class="auto-style3" style="visibility:hidden"><INPUT type = "button" value= "Calculate Sphere Stress" onclick=computeSphere(form); maxLength=7
+    size=16 ></td>
+          
+</tr>
+
+     <tr id = "axialStress">
+      <td style="width: 33%" class="auto-style2">Axial Stress</td>
+      <td style="width: 33%"><INPUT value= " " maxLength=7 size=16 name=astress></td>
+      <td style="width: 33%">&nbsp;</td>     
+     </tr>
+     <tr>
+      <td style="width: 33%" class="auto-style2">Circumfrence (Hoop) Stress</td>
+      <td style="width: 33%"><INPUT value= " " maxLength=7 size=16 name=cstress></td>
+      <td style="width: 33%">&nbsp;</td>
+     </tr>
+     <tr>
+      <td style="width: 33%" class="auto-style2">Radial Stress</td>
+      <td style="width: 33%"><INPUT value= " " maxLength=7 size=16 name=rstress></td>
+      <td style="width: 33%">&nbsp;</td>
+     </tr>
+    <td style="width: 33%">&nbsp;</td>
+      <tr id = "cylVonMises">
+      <td style="width: 33%" class="auto-style2">Von Mises Stress</td>
+    
+      <td style="width: 33%"><INPUT value= " " maxLength=7 size=16 name=vstress></td>
+      
+     </tr>
+     <tr>
+      <td style="width: 33%">&nbsp;</td>
+      <td style="width: 33%">&nbsp;</td>
+      <td style="width: 33%">&nbsp;</td>
+     </tr>
+    
+    </table>
+    </td>
+   </tr>
+  </table>
+  </td>
+ </tr>
+</table>
+
+</form>
+    </div>
+    
+
+</div>    
+</body>
+</html>

@@ -1,5 +1,5 @@
 ---
-permalink: /index.html
+permalink: /cylinder.html
 ---
 # Javascript-Engineering-Pressure-Vessel-Calc-App
 Explained with a cylinder example.  
