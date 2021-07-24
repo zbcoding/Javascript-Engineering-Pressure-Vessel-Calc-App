@@ -11,4 +11,4 @@ The internal pressure is the pressure inside the cylinder.
 The external pressure is the pressure outside the cylinder (usually, atmospheric pressure).  
 Note this calc. assumes a thick walled cylinder.  
 
-https://zbcoding.github.io/Javascript-Engineering-Pressure-Vessel-Calc-App/
+https://zbcoding.github.io/Javascript-Engineering-Pressure-Vessel-Calc-App/cylinder.html
