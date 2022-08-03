@@ -143,7 +143,7 @@ var ir = parseFloat(f.innr.value);
 var op = parseFloat(f.outp.value);
 var ip = parseFloat(f.inp.value);
 var radius = parseFloat(f.r.value);
-var p1 = parseFloat(f.p.selectedIndex) + 1.;
+var p1 = parseFloat(f.precision.selectedIndex) + 1.;
     
 var convLength = [0.001, 0.01, 1, 0.0254, (12*0.0254)];
 var convPressure = [1000000, 1000, 1, 1/0.000145037738007, 1000*(1/0.000145037738007), 1000000*(1/0.000145037738007) ];
