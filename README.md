@@ -14,6 +14,6 @@ https://zbcoding.github.io/Javascript-Engineering-Pressure-Vessel-Calc-App/cylin
 - The external pressure is the pressure outside the cylinder (usually, atmospheric pressure).  
 Note this example assumes a thick walled cylinder. The result would be different for a thin walled cylinder.   
 
-This was built as a project for a class. If you use this for a real use-case, you are responsible to verify the results for yourself, I make no guarantees.
+This was built as a project for a class before 2017. If you use this for a real use-case, you are responsible to verify the results for yourself, I make no guarantees.
 
 
