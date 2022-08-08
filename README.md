@@ -1,14 +1,13 @@
 ---
 permalink: /cylinder.html
 ---
-# Javascript-Engineering-Pressure-Vessel-Calc-App
-Explained with a cylinder example.  
-Imagine the cylinder is hollow.  
-The inner radius = distance from center line to the internal cylinder wall.   
-The outer radius = distance from center to the outside wall (edge).  
-The radius to the point in the wall = inner radius + small distance to the point inside the wall.  
-The internal pressure is the pressure inside the cylinder.  
-The external pressure is the pressure outside the cylinder (usually, atmospheric pressure).  
-Note this calc. assumes a thick walled cylinder.  
+# Javascript Engineering Pressure Vessel Calc App
+The inner radius is the distance from the cylinder center line to the internal cylinder wall.   
+The outer radius is the distance from the cylinder center line to the outside cylinder wall (edge).  
+The radius to the point in the wall is the inner radius to the internal cylinder wall, plus the small distance to the point representing the stress element somewhere inside the cylinder wall.
+The internal pressure is the pressure inside the cylinder.
+The external pressure is the pressure outside the cylinder (usually, atmospheric pressure).
+Note this example assumes a thick walled cylinder. The result would be different for a thin walled cylinder. 
 
+This was built as a project for a class. If you use this for a real use-case, you are responsible to verify the results for yourself, I make no guarantees.
 https://zbcoding.github.io/Javascript-Engineering-Pressure-Vessel-Calc-App/cylinder.html
