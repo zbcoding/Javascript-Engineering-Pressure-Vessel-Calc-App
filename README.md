@@ -5,6 +5,8 @@ permalink: /cylinder.html
 
 https://zbcoding.github.io/Javascript-Engineering-Pressure-Vessel-Calc-App/cylinder.html
 
+![thick_walled_cylinder](https://user-images.githubusercontent.com/56856630/183328618-8f74b17e-58fd-44d1-bdda-0f42b450bf6c.png)
+
 The inner radius is the distance from the cylinder center line to the internal cylinder wall.   
 The outer radius is the distance from the cylinder center line to the outside cylinder wall (edge).  
 The radius to the point in the wall is the inner radius to the internal cylinder wall, plus the small distance to the point representing the stress element somewhere inside the cylinder wall.
